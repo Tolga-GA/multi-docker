@@ -7,7 +7,7 @@ before_install:
 
 script:
   - docker run pureomega/react-test npm test -- --coverage
-
+#AFTER SUCCESS
 after_success:
   - docker build -t pureomega/complex-client ./client
   - docker build -t pureomega/complex-nginx ./nginx
