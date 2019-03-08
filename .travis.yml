@@ -16,7 +16,7 @@ after_success:
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push pureomega/multi-client
-  - docker push pureomega/multi-nginx
-  - docker push pureomega/multi-server
-  - docker push pureomega/multi-worker
+  - docker push pureomega/complex-client
+  - docker push pureomega/complex-nginx
+  - docker push pureomega/complex-server
+  - docker push pureomega/complex-worker
