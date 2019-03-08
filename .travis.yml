@@ -9,10 +9,10 @@ script:
   - docker run pureomega/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t pureomega/multi-client ./client
-  - docker build -t pureomega/multi-nginx ./nginx
-  - docker build -t pureomega/multi-server ./server
-  - docker build -t pureomega/multi-worker ./worker
+  - docker build -t pureomega/complex-client ./client
+  - docker build -t pureomega/complex-nginx ./nginx
+  - docker build -t pureomega/complex-server ./server
+  - docker build -t pureomega/complex-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
