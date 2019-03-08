@@ -1,0 +1,22 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t pureomega/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run pureomega/react-test npm test -- --coverage
+
+after_success:
+  - docker build -t pureomega/multi-client ./client
+  - docker build -t pureomega/multi-nginx ./nginx
+  - docker build -t pureomega/multi-server ./server
+  - docker build -t pureomega/multi-worker ./worker
+  # Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them to docker hub
+  - docker push pureomega/multi-client
+  - docker push pureomega/multi-nginx
+  - docker push pureomega/multi-server
+  - docker push pureomega/multi-worker
